@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: modernapp
+  labels:
+    app: modernapp
+    version: v2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: modernapp
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: modernapp
+        version: v2
+    spec:
+      containers:
+      - name: modernapp
+        image: christianhxc/modernapp:1.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: modernapp-lb
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: modernapp
+    version: v2
