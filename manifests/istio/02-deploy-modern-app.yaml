@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: modernapp
-        image: christianhxc/modernapp:1.1
+        image: christianhxc/modernapp:2.1
         imagePullPolicy: Always
         ports:
         - containerPort: 80
